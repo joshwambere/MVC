@@ -22,7 +22,7 @@ class Controller
 		if(file_exists('../app/views/'.$view.'.php')){
 			require '../app/views/'.$view.'.php';
 		}else{
-			die('page not found');
+			die('View not available');
 		}
 
 	}

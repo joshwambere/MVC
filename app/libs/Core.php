@@ -19,7 +19,7 @@ class Core
 	protected $defaultController='Home';
 	protected $defaultMethod='index';
 	protected $defaultparams=[];
-	
+	protected $errorhandler='';
 
 	/*
 	*constructor to run whenever an instance is created
@@ -30,7 +30,13 @@ class Core
 		if(file_exists('../app/controllers/'.ucwords($url[0]).'.php')){
 			$this->defaultController=ucwords($url[0]);
 			unset($url[0]);
+		}else{
+			require '../app/controllers/errorhandler.php';
+			$this->errorhandler='Errorhandler';
+			$this->errorhandler=new $this->errorhandler;
+			exit;
 		}
+
 		require_once '../app/controllers/'.$this->defaultController.'.php';
 
 		$this->defaultController=new $this->defaultController;
